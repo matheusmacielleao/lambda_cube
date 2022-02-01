@@ -1,5 +1,5 @@
 module.exports.calcVolume = async (event) => {
-  const response = { statusCode: 204 };
+  const response = { statusCode: 201 };
   const body = JSON.parse(event.body);
   const cube = {
     width: body.width,

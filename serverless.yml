@@ -62,7 +62,7 @@ plugins:
 
 functions:
   calcVolume:
-    handler: api/controller/cubeController.calcVolume
+    handler: src/index.calcVolume
     events:
       - http:
           path: /cube/calcvolume

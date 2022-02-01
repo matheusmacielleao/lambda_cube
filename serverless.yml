@@ -63,11 +63,16 @@ plugins:
 functions:
   calcVolume:
     handler: api/controller/cubeController.calcVolume
-  events:
-    -http:
-      path: cube/calcVolume
-      method : post
-      cors : true
+    events:
+      - http:
+          path: /cube/calcvolume
+          method : post
+	
+custom:
+  serverless-offline:
+    httpPort: 4000
+    
+          
 
 
 

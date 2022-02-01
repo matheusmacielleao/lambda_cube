@@ -3,8 +3,11 @@ const { cubeValidation } = require('./validation/cube/cube-validation');
 module.exports.calcVolume = async (event) => {
   const response = { statusCode: 201 };
   try {
-    const body = JSON.parse(event.body);
-    cubeValidation(body || {});
+    let body = JSON.parse(event.body);
+    if (body === null) {
+      body = {};
+    }
+    cubeValidation(body);
     const cube = {
       width: body.width,
       height: body.height,

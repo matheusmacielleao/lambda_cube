@@ -3,9 +3,12 @@
     "eslint": "^8.8.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
-    "serverless-offline": "^8.4.0"
+    "jest": "^27.4.7",
+    "serverless-offline": "^8.4.0",
+    "supertest": "^6.2.2"
   },
   "scripts": {
-    "start": "node_modules/.bin/serverless offline start"
+    "start": "node_modules/.bin/serverless offline start",
+    "test": "jest --coverage --runInBand --detectOpenHandles"
   }
 }

@@ -59,6 +59,7 @@ provider:
 #    - include-me-dir/**
 plugins:
   - serverless-offline
+  - serverless-plugin-typescript
 
 functions:
   calcVolume:

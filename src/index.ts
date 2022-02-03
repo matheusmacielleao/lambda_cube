@@ -1,11 +1,11 @@
-const { cubeValidation } = require('./validation/cube/cube-validation');
+import {cubeValidation} from './validation/cube/cube-validation';
 
-module.exports.calcVolume = async (event) => {
+const calcVolume = async (event:{body: string}) => {
   try {
     let body = JSON.parse(event.body);
     if (body === null) { body = {}; }
 
-    cubeValidation(body);
+      cubeValidation(body);
 
     const cube = {
       width: body.width,
@@ -15,7 +15,8 @@ module.exports.calcVolume = async (event) => {
     };
     const response = { body: JSON.stringify(cube), statusCode: 201 };
     return response;
-  } catch (e) {
+  } catch (e : any) {
     return { body: e.message, statusCode: 400 };
   }
 };
+export  {calcVolume};

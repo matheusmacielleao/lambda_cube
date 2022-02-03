@@ -1,7 +1,6 @@
 const { cubeValidation } = require('./validation/cube/cube-validation');
 
 module.exports.calcVolume = async (event) => {
-  const response = { statusCode: 201 };
   try {
     let body = JSON.parse(event.body);
     if (body === null) { body = {}; }
@@ -14,7 +13,7 @@ module.exports.calcVolume = async (event) => {
       depth: body.depth,
       volume: body.width * body.height * body.depth,
     };
-    response.body = JSON.stringify(cube);
+    const response = { body: JSON.stringify(cube), statusCode: 201 };
     return response;
   } catch (e) {
     return { body: e.message, statusCode: 400 };

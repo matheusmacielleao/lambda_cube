@@ -4,10 +4,10 @@ module.exports.calcVolume = async (event) => {
   const response = { statusCode: 201 };
   try {
     let body = JSON.parse(event.body);
-    if (body === null) {
-      body = {};
-    }
+    if (body === null) { body = {}; }
+
     cubeValidation(body);
+
     const cube = {
       width: body.width,
       height: body.height,

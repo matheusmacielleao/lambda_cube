@@ -1,31 +1,30 @@
 const { cubeValidation } = require('../../../src/validation/cube/cube-validation');
 
-let cubeMock = null;
-
-beforeAll(async () => {
-  cubeMock = {
-    height: 10,
-    depth: 10,
-    width: 10,
-  };
-});
-
 describe('calcVolume', () => {
-  test(' cube with missing atribute', async () => {
+  let cubeMock = null;
+
+  beforeAll(async () => {
+    cubeMock = {
+      height: 10,
+      depth: 10,
+      width: 10,
+    };
+  });
+  test('cube with missing atribute', async () => {
     delete cubeMock.width;
     expect(() => { cubeValidation(cubeMock); }).toThrow('width is required');
   });
 
-  test(' empity cube object', async () => {
+  test('empity cube object', async () => {
     expect(() => { cubeValidation({}); }).toThrow('width is required');
   });
 
-  test(' cubeatribute value less than 0', async () => {
+  test('cubeatribute value less than 0', async () => {
     cubeMock.width = -1;
     expect(() => { cubeValidation(cubeMock); }).toThrow('width must be bigger than 0');
   });
 
-  test(' should return status 400 and message with atribute not being a number', async () => {
+  test('should return status 400 and message with atribute not being a number', async () => {
     cubeMock.width = 'test';
     expect(() => { cubeValidation(cubeMock); }).toThrow('width must be a number');
   });

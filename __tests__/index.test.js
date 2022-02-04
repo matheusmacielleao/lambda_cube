@@ -3,11 +3,10 @@ const { calcVolume } = require('../src');
 
 describe('cubeValidation', () => {
   let cubeMock = null;
+  const client = createClient();
+
   afterAll(async () => {
-    const client = createClient();
-    await client.connect();
-    await client.del('cubes');
-    await client.disconnect();
+   
   });
 
   beforeAll(async () => {
@@ -16,10 +15,9 @@ describe('cubeValidation', () => {
       depth: 10,
       width: 10,
     };
-    const client = createClient();
     await client.connect();
     await client.del('cubes');
-    await client.disconnect();
+    await client.quit();
   });
   test('should calculate the volume of the cube', async () => {
     const response = await calcVolume({ body: JSON.stringify(cubeMock) });

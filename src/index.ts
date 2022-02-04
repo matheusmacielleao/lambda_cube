@@ -4,17 +4,19 @@ import { createClient } from 'redis';
 
 
 const calcVolume = async (event:{body: string}) => {
+  const client = createClient();
+  await client.connect();
   try {
     let body = JSON.parse(event.body);
     if (body === null) { body = {}; }
    
-    const client = createClient();
-    await client.connect();
-
+    
     cubeValidation(body);
+    
     const stringifiedBody = JSON.stringify(body);
     const cached = await client.HGET("cubes",stringifiedBody);
     if(cached){
+      await client.quit();
       return {body: cached,statusCode:200}
     }
     const cube = JSON.stringify({
@@ -27,8 +29,11 @@ const calcVolume = async (event:{body: string}) => {
 
     const response = { body: cube, statusCode: 201 };
     client.HSET("cubes",stringifiedBody,cube);
+      await client.quit();
     return response;
+
   } catch (e : any) {
+    await client.quit();
     return { body: e.message, statusCode: 400 };
   }
 };

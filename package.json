@@ -17,5 +17,9 @@
   "scripts": {
     "start": "node_modules/.bin/serverless offline start",
     "test": "npx jest --coverage --runInBand --detectOpenHandles"
+  },
+  "dependencies": {
+    "promise-redis": "^0.0.5",
+    "redis": "^4.0.3"
   }
 }

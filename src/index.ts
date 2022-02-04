@@ -28,8 +28,8 @@ const calcVolume = async (event:{body: string}) => {
     });
 
     const response = { body: cube, statusCode: 201 };
-    client.HSET("cubes",stringifiedBody,cube);
-      await client.quit();
+    await client.HSET("cubes",stringifiedBody,cube);
+    await client.quit();
     return response;
 
   } catch (e : any) {

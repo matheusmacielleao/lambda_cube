@@ -19,6 +19,7 @@
     "test": "npx jest --coverage --runInBand --detectOpenHandles"
   },
   "dependencies": {
+    "@types/redis": "^4.0.11",
     "promise-redis": "^0.0.5",
     "redis": "^4.0.3"
   }

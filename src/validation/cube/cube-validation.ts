@@ -1,6 +1,6 @@
-import CubeInterface from "../../interface/cube/cube-interface";
+import CubeDto from "../../interface/cube/cube-dto";
 
-const cubeValidation = (body : CubeInterface) => {
+const cubeValidation = (body : CubeDto) => {
   const idealCube :Record<string,{required:boolean}> = {
     width: { required: true },
     height: { required: true },

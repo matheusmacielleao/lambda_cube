@@ -2,7 +2,7 @@ const { createClient } = require('redis');
 const { calcVolume } = require('../src');
 
 describe('cubeValidation', () => {
-  let cubeMock = null;
+  let cubeMock: { width: any; height?: number; depth?: number; };
   const client = createClient();
 
   afterAll(async () => {

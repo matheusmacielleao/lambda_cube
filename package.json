@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@types/jest": "^27.4.0",
+    "@types/redis-mock": "^0.17.1",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
     "aws-lambda": "^1.0.7",
@@ -8,6 +9,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
     "jest": "^27.4.7",
+    "jest-mock-extended": "^2.0.4",
     "serverless-offline": "^8.4.0",
     "serverless-plugin-typescript": "^2.1.1",
     "supertest": "^6.2.2",
@@ -20,8 +22,11 @@
     "test": "npx jest --coverage --runInBand --detectOpenHandles"
   },
   "dependencies": {
+    "@types/ioredis": "^4.28.8",
     "@types/redis": "^4.0.11",
+    "ioredis": "^4.28.5",
     "promise-redis": "^0.0.5",
-    "redis": "^4.0.3"
+    "redis": "^4.0.3",
+    "redis-mock": "^0.56.3"
   }
 }

@@ -23,10 +23,9 @@ const calcVolume = async (event: any) => {
     return {body: JSON.stringify(body),statusCode:201}
 
   } catch (e : any) {
-    
     return { body: e.message, statusCode: 400 };
   } finally {
-    client.quit();
+    await client.quit();
   }
 };
 export {calcVolume};

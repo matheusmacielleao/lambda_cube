@@ -1,11 +1,11 @@
 import Cube from "../interface/cube/cube";
 import CubeDto from "../interface/cube/cube-dto";
 import Repository from "./repository";
-import *  as Redis from "ioredis";
-import { ioredisClient } from "../../infra/cache/ioredis-client";
+import  {Redis} from "ioredis";
 export class CubeRepository implements Repository<CubeDto,Cube> {
-    constructor(private hash='cubes'){}
-    private client = ioredisClient();
+    constructor(private hash='cubes',private client: Redis){
+        this.client = client;
+    }
     async set(key: string, value: CubeDto): Promise<Cube> {
         const cube :Cube = {
             width: value.width,

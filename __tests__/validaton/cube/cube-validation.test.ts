@@ -3,7 +3,7 @@ const { cubeValidation } = require('../../../src/validation/cube/cube-validation
 describe('calcVolume', () => {
   let cubeMock: { width: any; height?: number; depth?: number; };
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     cubeMock = {
       height: 10,
       depth: 10,

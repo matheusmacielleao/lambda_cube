@@ -19,7 +19,9 @@
   },
   "scripts": {
     "start": "node_modules/.bin/serverless offline start",
-    "test": "npx jest --coverage --runInBand --detectOpenHandles"
+    "test": "npx jest --runInBand --detectOpenHandles",
+    "test:unit": "npm test -- --watch -c jest-unit.config.js",
+    "test:coverage": "npm test -- --coverage"
   },
   "dependencies": {
     "@types/ioredis": "^4.28.8",

@@ -66,8 +66,14 @@ functions:
     handler: src/index.calcVolume
     events:
       - http:
-          path: /cube/calcvolume
+          path: /cube
           method : post
+  calcBag:
+    handler: src/handler/bag-handler.calcBag
+    events:
+      - http:
+          path : /bag
+          method: post
 	
 custom:
   serverless-offline:

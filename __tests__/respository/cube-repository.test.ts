@@ -81,4 +81,8 @@ describe('cube-repository', () => {
       ]
     )
   })
+  test('should throw error with number greater than the cubes cahced', async () => {
+    jest.spyOn(Redis.prototype, 'hlen').mockImplementationOnce(async () => (3))
+    await expect(sut.getAll(5)).rejects.toThrowError('only 3 cached in system')
+  })
 })

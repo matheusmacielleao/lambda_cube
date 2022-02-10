@@ -1,29 +1,13 @@
-import { cubeValidation } from '../validation/cube/cube-validation'
-import { CubeRepository } from '../repository/cube-repository'
-import { ioredisClient } from '../infra/cache/ioredis-client'
+import { CubeService } from '../service/cube-service'
 const cubeHandler = async (event: any) => {
-  const client = ioredisClient()
-  const cubeRepository = new CubeRepository(client)
+  const cubeService = new CubeService()
   try {
-    let body = JSON.parse(event.body)
-    if (body === null) { body = {} }
-    const stringifiedBody = event.body
-
-    cubeValidation(body)
-
-    const cachedCube = await cubeRepository.get(stringifiedBody)
-    if (cachedCube) {
-      return { body: JSON.stringify(cachedCube), statusCode: 200 }
-    }
-
-    body.volume = body.width * body.height * body.depth
-    cubeRepository.set(stringifiedBody, body)
-
-    return { body: JSON.stringify(body), statusCode: 201 }
+    const result = await cubeService.set(event)
+    return { body: JSON.stringify(result), statusCode: 201 }
   } catch (e : any) {
     return { body: e.message, statusCode: 400 }
   } finally {
-    await client.quit()
+    await cubeService.disconnect()
   }
 }
 export { cubeHandler }

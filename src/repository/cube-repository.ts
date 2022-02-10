@@ -17,10 +17,7 @@ export class CubeRepository implements Repository<CubeDto, Cube> {
         cached: true
       }
 
-      const create = await this.client.hset(this.hash, key, JSON.stringify(cube))
-      if (create) {
-        throw new Error('failed to create')
-      }
+      await this.client.hset(this.hash, key, JSON.stringify(cube))
       return cube
     }
 

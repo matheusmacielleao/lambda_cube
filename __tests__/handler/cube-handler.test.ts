@@ -1,6 +1,5 @@
 
 import { cubeHandler as sut } from '../../src/handler/cube-handler'
-import { CubeRepository } from '../../src/repository/cube-repository'
 import { CubeService } from '../../src/service/cube-service'
 describe('cubeValidation', () => {
   let cubeMock = {

@@ -47,6 +47,24 @@ describe('cube-repository', () => {
       cached: true
     })
   })
+  test('should return nothing', async () => {
+    jest.spyOn(Redis.prototype, 'hget').mockImplementationOnce(async () => (JSON.stringify({
+      height: 10,
+      depth: 10,
+      width: 10,
+      volume: 1000,
+      cached: true
+    })))
+
+    const response = await sut.get(JSON.stringify(cubeMock))
+    expect(response).toStrictEqual({
+      height: 10,
+      depth: 10,
+      width: 10,
+      volume: 1000,
+      cached: true
+    })
+  })
   test('should return a list of cube that was previously cached', async () => {
     jest.spyOn(Redis.prototype, 'hgetall').mockImplementationOnce(async () => ({
       '{"height":10,"depth":10,"width":10}': '{"width":10,"height":10,"depth":10,"volume":1000,"cached":true}',

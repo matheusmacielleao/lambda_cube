@@ -63,4 +63,8 @@ describe('handlerBag', () => {
     }
     )
   })
+  test('should throw error with invalid number', async () => {
+    const response = await sut({ body: JSON.stringify({ number: 'x' }) })
+    expect(response).toStrictEqual({ body: 'number property invalid', statusCode: 400 })
+  })
 })

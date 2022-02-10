@@ -3,7 +3,7 @@ interface Cube {
     height: number;
     depth: number;
     volume: number;
-    cached: boolean;
+    cached?: boolean;
 }
 
 export default Cube

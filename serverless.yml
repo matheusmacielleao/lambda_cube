@@ -63,13 +63,13 @@ plugins:
 
 functions:
   calcVolume:
-    handler: src/handler/cube-handler.calcVolume
+    handler: src/handler/cube-handler.cubeHandler
     events:
       - http:
           path: /cube
           method : post
   calcBag:
-    handler: src/handler/bag-handler.calcBag
+    handler: src/handler/bag-handler.bagHandler
     events:
       - http:
           path : /bag

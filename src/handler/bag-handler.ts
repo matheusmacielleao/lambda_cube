@@ -1,4 +1,4 @@
-import { ioredisClient } from '../../infra/cache/ioredis-client'
+import { ioredisClient } from '../infra/cache/ioredis-client'
 import { CubeRepository } from '../repository/cube-repository'
 
 const bagHandler = async (event: any) => {
@@ -6,6 +6,9 @@ const bagHandler = async (event: any) => {
   const cubeRepository = new CubeRepository(client)
   try {
     const body = JSON.parse(event.body)
+    if (!body.number || typeof body.number !== 'number' || body.number < 1) {
+      throw new Error('number property invalid')
+    }
     const cubes = await cubeRepository.getAll(body.number)
     const bag = {
       width: 0,

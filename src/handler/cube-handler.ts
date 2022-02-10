@@ -1,6 +1,6 @@
 import { cubeValidation } from '../validation/cube/cube-validation'
 import { CubeRepository } from '../repository/cube-repository'
-import { ioredisClient } from '../../infra/cache/ioredis-client'
+import { ioredisClient } from '../infra/cache/ioredis-client'
 const cubeHandler = async (event: any) => {
   const client = ioredisClient()
   const cubeRepository = new CubeRepository(client)

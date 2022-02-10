@@ -3,7 +3,7 @@ import { CubeRepository } from "../repository/cube-repository";
 
 const calcBag = async (event: any) => {
     const client = ioredisClient();
-    const cubeRepository = new CubeRepository('cubes',client);
+    const cubeRepository = new CubeRepository(client);
     try {
       const body = JSON.parse(event.body);
       const cubes= await cubeRepository.getAll(body.number) ;

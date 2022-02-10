@@ -4,7 +4,7 @@ import {CubeRepository} from '../repository/cube-repository';
 import { ioredisClient } from '../../infra/cache/ioredis-client';
 const calcVolume = async (event: any) => {
   const client = ioredisClient();
-  const cubeRepository = new CubeRepository('cubes',client);
+  const cubeRepository = new CubeRepository(client);
   try {
     let body = JSON.parse(event.body);
     if (body === null) { body = {}; }

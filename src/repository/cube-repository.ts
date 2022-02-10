@@ -3,7 +3,8 @@ import CubeDto from "../interface/cube/cube-dto";
 import Repository from "./repository";
 import  {Redis} from "ioredis";
 export class CubeRepository implements Repository<CubeDto,Cube> {
-    constructor(private hash='cubes',private client: Redis){
+    private hash='cubes';
+    constructor(private client: Redis){
         this.client = client;
     }
     

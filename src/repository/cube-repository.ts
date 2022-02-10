@@ -6,6 +6,7 @@ export class CubeRepository implements Repository<CubeDto,Cube> {
     constructor(private hash='cubes',private client: Redis){
         this.client = client;
     }
+    
     async set(key: string, value: CubeDto): Promise<Cube> {
         const cube :Cube = {
             width: value.width,
@@ -15,11 +16,10 @@ export class CubeRepository implements Repository<CubeDto,Cube> {
             cached:true,
         }
 
-        this.client.hset(this.hash,key,JSON.stringify(cube)).then(()=>this.client.quit());
-        
-        const {cached,...response} = cube;
+        await this.client.hset(this.hash,key,JSON.stringify(cube));
         return cube;
     }
+
     async get(key: string): Promise<Cube | null> {
         const cachedCube = await this.client.hget(this.hash, key);
         if(cachedCube){
@@ -29,6 +29,19 @@ export class CubeRepository implements Repository<CubeDto,Cube> {
             return null;
         }
 
+    }
+
+    async getAll(number: number): Promise<Cube[]> {
+        const cubesStored :  number = await this.client.hlen(this.hash);
+        if (cubesStored < number) throw new Error(`only ${cubesStored} cached in system`);
+        
+        let cachedCubes = await this.client.hgetall(this.hash);
+        const cubes: Cube[] = [];
+        Object.keys(cachedCubes).forEach(key =>{
+            cubes.push(JSON.parse(cachedCubes[key]) as Cube);
+        })
+
+        return cubes.slice(0,number);
     }
     
 }

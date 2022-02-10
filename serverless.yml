@@ -63,7 +63,7 @@ plugins:
 
 functions:
   calcVolume:
-    handler: src/index.calcVolume
+    handler: src/handler/cube-handler.calcVolume
     events:
       - http:
           path: /cube

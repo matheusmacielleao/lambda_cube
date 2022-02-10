@@ -1,5 +1,5 @@
 
-import { calcVolume as sut } from '../src';
+import { calcVolume as sut } from '../src/handler/cube-handler';
 import { CubeRepository } from '../src/repository/cube-repository';
 describe('cubeValidation', () => {
   let cubeMock = {

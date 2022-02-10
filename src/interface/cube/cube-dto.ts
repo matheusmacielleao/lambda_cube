@@ -5,4 +5,4 @@ interface CubeDto {
     volume : number;
 }
 
-export default CubeDto;
+export default CubeDto

@@ -6,4 +6,4 @@ interface Cube {
     cached: boolean;
 }
 
-export default Cube;
+export default Cube

@@ -26,13 +26,13 @@ export class CubeRepository implements Repository<CubeDto,Cube> {
 
     async get(key: string): Promise<Cube | null> {
         const cachedCube = await this.client.hget(this.hash, key);
-        if(cachedCube){
-            const cube = JSON.parse(cachedCube) as Cube;
-            return cube;
-        } else {
+        
+        if(!cachedCube){
             return null;
         }
 
+        const cube = JSON.parse(cachedCube) as Cube;
+        return cube;
     }
 
     async getAll(number: number): Promise<Cube[]> {
